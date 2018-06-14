@@ -12,4 +12,7 @@
     <color name="defaultTextColor">@color/colorWhite</color>
 
     <color name="done">#aece98</color>
+
+    <color name="plus_disabled">#666666</color>
+    <color name="plus_enabled">@color/colorWhite</color>
 </resources>

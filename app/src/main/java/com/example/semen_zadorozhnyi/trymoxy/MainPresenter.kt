@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 class MainPresenter : MvpPresenter<MainView>() {
 
     init {
-        viewState.showText("0")
+        viewState.showText(DEFAULT_SCORE)
         startCounter()
     }
 
@@ -18,11 +18,8 @@ class MainPresenter : MvpPresenter<MainView>() {
         viewState.showText((current.toInt() + 1).toString())
     }
 
-    fun onMinusPressed(current: String) {
-        viewState.showText((current.toInt() - 1).toString())
-    }
-
     fun onTryAgain() {
+        viewState.showText(DEFAULT_SCORE)
         startCounter()
     }
 
@@ -60,5 +57,9 @@ class MainPresenter : MvpPresenter<MainView>() {
                 }
             }
         }.execute()
+    }
+
+    companion object {
+        private const val DEFAULT_SCORE = "0"
     }
 }

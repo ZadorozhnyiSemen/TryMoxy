@@ -7,18 +7,17 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.example.semen_zadorozhnyi.trymoxy.utils.show
 import kotlinx.android.synthetic.main.activity_main.counter
 import kotlinx.android.synthetic.main.activity_main.greeting
-import kotlinx.android.synthetic.main.activity_main.minus
 import kotlinx.android.synthetic.main.activity_main.plus
 import kotlinx.android.synthetic.main.activity_main.try_again_button as tryAgain
 
 class MainActivity : MvpAppCompatActivity(), MainView {
 
-    @InjectPresenter lateinit var presenter: MainPresenter
+    @InjectPresenter
+    lateinit var presenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        minus.setOnClickListener { presenter.onMinusPressed(greeting.text as String) }
         plus.setOnClickListener { presenter.onPlusPressed(greeting.text as String) }
         tryAgain.setOnClickListener { presenter.onTryAgain() }
     }
@@ -43,11 +42,15 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         counter.setTextColor(ContextCompat.getColor(this, R.color.done))
         counter.show(true)
         counter.text = getString(R.string.finished)
+        plus.isEnabled = false
+        plus.setBackgroundColor(ContextCompat.getColor(this, R.color.plus_disabled))
     }
 
     override fun hideTryAgain() {
         counter.setTextColor(ContextCompat.getColor(this, R.color.colorWhite))
+        plus.setBackgroundColor(ContextCompat.getColor(this, R.color.plus_enabled))
         tryAgain.show(false)
+        plus.isEnabled = true
     }
 
     override fun showTryAgain() {

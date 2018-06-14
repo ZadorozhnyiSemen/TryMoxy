@@ -22,36 +22,19 @@
         tools:text="0"/>
 
     <Button
-        android:id="@+id/minus"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/default_margin"
-        android:layout_marginEnd="@dimen/half_default_margin"
-        android:layout_marginStart="@dimen/default_margin"
-        android:background="@color/buttonBackground"
-        android:text="@string/minus_button_text"
-        android:textColor="@color/buttonTextColor"
-        android:textSize="@dimen/medium_text_size"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/plus"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-
-    <Button
         android:id="@+id/plus"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/default_margin"
         android:layout_marginEnd="@dimen/default_margin"
-        android:layout_marginStart="@dimen/half_default_margin"
+        android:layout_marginStart="@dimen/default_margin"
         android:background="@color/buttonBackground"
         android:text="@string/plus_button_text"
         android:textColor="@color/buttonTextColor"
         android:textSize="@dimen/medium_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/minus"
-        />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/counter"
@@ -83,5 +66,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="319dp"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/half_default_margin"
+        android:layout_marginEnd="@dimen/half_default_margin"
+        android:layout_marginStart="@dimen/half_default_margin"
+        android:textColor="@color/colorWhite"
+        android:text="@string/hint_text"
+        app:layout_constraintBottom_toTopOf="@+id/plus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>
