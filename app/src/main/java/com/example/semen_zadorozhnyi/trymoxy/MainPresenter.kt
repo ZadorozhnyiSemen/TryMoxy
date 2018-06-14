@@ -22,6 +22,10 @@ class MainPresenter : MvpPresenter<MainView>() {
         viewState.showText((current.toInt() - 1).toString())
     }
 
+    fun onTryAgain() {
+        startCounter()
+    }
+
     @SuppressLint("StaticFieldLeak")
     private fun startCounter() {
         object : AsyncTask<Void, String, Void>() {
@@ -40,10 +44,12 @@ class MainPresenter : MvpPresenter<MainView>() {
             override fun onPostExecute(result: Void?) {
                 viewState.hideCounter()
                 viewState.showFinished()
+                viewState.showTryAgain()
             }
 
             override fun onPreExecute() {
                 viewState.showCounter()
+                viewState.hideTryAgain()
             }
 
             private fun waitSecond() {

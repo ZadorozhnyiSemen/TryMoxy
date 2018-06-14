@@ -69,4 +69,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
+    <Button
+        android:id="@+id/try_again_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:layout_marginStart="@dimen/default_margin"
+        tools:text="Try again?"
+        android:textColor="@color/colorWhite"
+        style="@android:style/Widget.Material.Button.Borderless"
+        android:text="@string/try_again_text"
+        app:layout_constraintTop_toBottomOf="@id/counter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="319dp"/>
+
 </android.support.constraint.ConstraintLayout>

@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.counter
 import kotlinx.android.synthetic.main.activity_main.greeting
 import kotlinx.android.synthetic.main.activity_main.minus
 import kotlinx.android.synthetic.main.activity_main.plus
+import kotlinx.android.synthetic.main.activity_main.try_again_button as tryAgain
 
 class MainActivity : MvpAppCompatActivity(), MainView {
 
@@ -19,6 +20,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         setContentView(R.layout.activity_main)
         minus.setOnClickListener { presenter.onMinusPressed(greeting.text as String) }
         plus.setOnClickListener { presenter.onPlusPressed(greeting.text as String) }
+        tryAgain.setOnClickListener { presenter.onTryAgain() }
     }
 
     override fun showText(someText: String) {
@@ -41,5 +43,14 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         counter.setTextColor(ContextCompat.getColor(this, R.color.done))
         counter.show(true)
         counter.text = getString(R.string.finished)
+    }
+
+    override fun hideTryAgain() {
+        counter.setTextColor(ContextCompat.getColor(this, R.color.colorWhite))
+        tryAgain.show(false)
+    }
+
+    override fun showTryAgain() {
+        tryAgain.show(true)
     }
 }

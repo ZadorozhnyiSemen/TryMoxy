@@ -12,4 +12,8 @@ interface MainView : MvpView {
     fun setCounter(value: String)
 
     fun showFinished()
+
+    fun hideTryAgain()
+
+    fun showTryAgain()
 }
