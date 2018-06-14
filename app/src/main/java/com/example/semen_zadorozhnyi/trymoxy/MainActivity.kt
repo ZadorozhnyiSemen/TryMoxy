@@ -14,8 +14,8 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        minus.setOnClickListener { presenter.minus(greeting.text as String) }
-        plus.setOnClickListener { presenter.plus(greeting.text as String) }
+        minus.setOnClickListener { presenter.onMinusPressed(greeting.text as String) }
+        plus.setOnClickListener { presenter.onPlusPressed(greeting.text as String) }
     }
 
     override fun showText(someText: String) {
