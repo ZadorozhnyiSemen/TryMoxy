@@ -10,4 +10,6 @@
     <color name="buttonTextColor">@color/colorPurple</color>
     <color name="buttonBackground">@color/colorWhite</color>
     <color name="defaultTextColor">@color/colorWhite</color>
+
+    <color name="done">#aece98</color>
 </resources>
