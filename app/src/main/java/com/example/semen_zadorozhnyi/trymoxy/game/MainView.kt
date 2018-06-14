@@ -1,4 +1,4 @@
-package com.example.semen_zadorozhnyi.trymoxy
+package com.example.semen_zadorozhnyi.trymoxy.game
 
 import com.arellomobile.mvp.MvpView
 

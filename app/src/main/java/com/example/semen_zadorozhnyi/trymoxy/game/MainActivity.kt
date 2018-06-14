@@ -1,9 +1,10 @@
-package com.example.semen_zadorozhnyi.trymoxy
+package com.example.semen_zadorozhnyi.trymoxy.game
 
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
+import com.example.semen_zadorozhnyi.trymoxy.R
 import com.example.semen_zadorozhnyi.trymoxy.utils.show
 import kotlinx.android.synthetic.main.activity_main.counter
 import kotlinx.android.synthetic.main.activity_main.greeting
