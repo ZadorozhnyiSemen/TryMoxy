@@ -1,9 +1,9 @@
 package com.example.semen_zadorozhnyi.trymoxy.game
 
-import android.annotation.SuppressLint
 import android.os.AsyncTask
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
+import java.lang.ref.WeakReference
 import java.util.concurrent.TimeUnit
 
 @InjectViewState
@@ -11,7 +11,7 @@ class MainPresenter : MvpPresenter<MainView>() {
 
     init {
         viewState.showText(DEFAULT_SCORE)
-        startCounter()
+        createCountTask(viewState).execute()
     }
 
     fun onPlusPressed(current: String) {
@@ -20,43 +20,45 @@ class MainPresenter : MvpPresenter<MainView>() {
 
     fun onTryAgain() {
         viewState.showText(DEFAULT_SCORE)
-        startCounter()
+        createCountTask(viewState).execute()
     }
 
-    @SuppressLint("StaticFieldLeak")
-    private fun startCounter() {
-        object : AsyncTask<Void, String, Void>() {
-            override fun doInBackground(vararg params: Void?): Void? {
-                for (i in 5 downTo 1) {
-                    publishProgress(i.toString())
-                    waitSecond()
-                }
-                return null
-            }
+    private fun createCountTask(viewState: MainView) = CountTask(viewState)
 
-            override fun onProgressUpdate(vararg values: String?) {
-                values[0]?.let { viewState.setCounter(it) }
-            }
+    class CountTask(viewState: MainView) : AsyncTask<Void, String, Void>() {
 
-            override fun onPostExecute(result: Void?) {
-                viewState.hideCounter()
-                viewState.showFinished()
-                viewState.showTryAgain()
-            }
+        private var weakViewState: WeakReference<MainView> = WeakReference(viewState)
 
-            override fun onPreExecute() {
-                viewState.showCounter()
-                viewState.hideTryAgain()
+        override fun doInBackground(vararg params: Void?): Void? {
+            for (i in 5 downTo 1) {
+                publishProgress(i.toString())
+                waitSecond()
             }
+            return null
+        }
 
-            private fun waitSecond() {
-                try {
-                    TimeUnit.SECONDS.sleep(1)
-                } catch (e: Exception) {
-                    println(e.stackTrace)
-                }
+        override fun onProgressUpdate(vararg values: String?) {
+            values[0]?.let { weakViewState.get()?.setCounter(it) }
+        }
+
+        override fun onPostExecute(result: Void?) {
+            weakViewState.get()?.hideCounter()
+            weakViewState.get()?.showFinished()
+            weakViewState.get()?.showTryAgain()
+        }
+
+        override fun onPreExecute() {
+            weakViewState.get()?.showCounter()
+            weakViewState.get()?.hideTryAgain()
+        }
+
+        private fun waitSecond() {
+            try {
+                TimeUnit.SECONDS.sleep(1)
+            } catch (e: Exception) {
+                println(e.stackTrace)
             }
-        }.execute()
+        }
     }
 
     companion object {
